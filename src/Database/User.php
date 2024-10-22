@@ -1,15 +1,65 @@
 <?php
 
 class User extends Database {
-    public function create(array $UserData) {}
+    public function create(array $UserData) {
+        $result = $this->Connection->query('
+            INSERT INTO `php`.`guests` (`name`, `surname`, `email`, `phone`, `country`)
+            VALUES
+            ("' . $UserData['name'] . '", "' . $UserData['surname'] . '", "' . $UserData['email'] . '", "' . $UserData['phone'] . '", "' . $UserData['country'] . '")
+        ');
 
-    public function getUserById(int $id) {}
+        return $result ? true : false;
+    }
 
-    public function getUserByUsername(string $username) {}
+    public function getUserById(array $UserData) {
+        $result = $this->Connection->query('
+            SELECT * FROM `php`.`guests`
+            WHERE `id` = ' . $UserData['id'] . '
+        ');
 
-    public function delete(int $id) {}
+        return $result->fetch_assoc();
+    }
 
-    public function update(int $id, array $UserData) {}
+    public function getUserByEmail(array $UserData) {
+        $result = $this->Connection->query('
+            SELECT * FROM `php`.`guests`
+            WHERE `email` = "' . $UserData['email'] . '"
+        ');
 
-    public function getAllUsers() {}
+        return $result->fetch_assoc();
+    }
+
+    public function delete(array $UserData) {
+        $result = $this->Connection->query('
+            DELETE FROM `php`.`guests`
+            WHERE `id` = ' . $UserData['id'] . '
+        ');
+
+        return $result ? true : false;
+    }
+
+    public function updateUserData(array $UserData) {
+        $result = $this->Connection->query('
+            UPDATE `php`.`guests`
+            SET
+                `name` = "' . $UserData['name'] . '",
+                `surname` = "' . $UserData['surname'] . '",
+                `email` = "' . $UserData['email'] . '",
+                `phone` = "' . $UserData['phone'] . '",
+                `country` = "' . $UserData['country'] . '"
+            WHERE `id` = ' . $UserData['id'] . '
+        ');
+
+        return $result ? true : false;
+    }
+
+    public function getAllUsers() {
+        $result = $this->Connection->query('
+            SELECT * FROM `php`.`guests`
+            ORDER BY `id` ASC 
+            LIMIT 10
+        ');
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

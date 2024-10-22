@@ -9,10 +9,6 @@ return [
         "handler" => "CreateController",
     ],
 
-    '/update' => [
-        "handler" => "UpdateController",
-    ],
-
     '/delete' => [
         "handler" => "DeleteController",
     ],
