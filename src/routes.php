@@ -1,10 +1,6 @@
 <?php
 
 return [
-    '/hello' => [
-        "handler" => "HelloController",
-    ],
-
     '/create' => [
         "handler" => "CreateController",
     ],
