@@ -12,7 +12,6 @@ $routes = require __DIR__ . '/routes.php';
 require_once('./RequestHandler.php');
 require_once('./ResponseSender.php');
 
-
 $requestHandler = new RequestHandler($routes);
 $responseSender = new ResponseSender();
 
