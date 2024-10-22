@@ -30,9 +30,9 @@ PHP 8.0 | MariaDB 10.6 | PhpMyAdmin (просто для удобной визу
 # Запуск
 Для запуска проекта нужно создать `.env` файл в корне, который будет содержать переменные для создания контейнеров:
 ```.env
-PHP_PORT=8089
-SQL_PORT=8090
-SQL_ROOT_PASSWORD=121212Err
+PHP_PORT=Порт для запуска сервиса
+SQL_PORT=Порт для запуска phpmyadmin
+SQL_ROOT_PASSWORD=Пароль к БД
 ```
 Затем, нужно выполнить `docker compose up --build`. 
 `docker-compose.yml` уже содержит в себе всё необходимое.
