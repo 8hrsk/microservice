@@ -29,6 +29,15 @@ class User extends Database {
         return $result->fetch_assoc();
     }
 
+    public function getUserByPhone(array $UserData) {
+        $result = $this->Connection->query('
+            SELECT * FROM `php`.`guests`
+            WHERE `phone` = "' . $UserData['phone'] . '"
+        ');
+
+        return $result->fetch_assoc();
+    }
+
     public function delete(array $UserData) {
         $result = $this->Connection->query('
             DELETE FROM `php`.`guests`
@@ -56,8 +65,7 @@ class User extends Database {
     public function getAllUsers() {
         $result = $this->Connection->query('
             SELECT * FROM `php`.`guests`
-            ORDER BY `id` ASC 
-            LIMIT 10
+            ORDER BY `id` ASC
         ');
 
         return $result->fetch_all(MYSQLI_ASSOC);

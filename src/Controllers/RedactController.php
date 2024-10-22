@@ -4,6 +4,12 @@ class RedactController extends Controller {
 
     public function handle() {
 
+        $validationNotPassed = $this->validate();
+
+        if (count($validationNotPassed['body']) > 0) {
+            return $this->JSON($validationNotPassed);
+        }
+
         $result = $this->Users->updateUserData($this->data);
 
         if ($result === true) {
