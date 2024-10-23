@@ -15,7 +15,6 @@ $responseSender = new ResponseSender();
 
 $response = $requestHandler->handleRequest($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $_POST);
 
-
 $executionTime = xdebug_time_index();
 $memoryUsage = xdebug_memory_usage();
-$responseSender->send($response, $executionTime, $memoryUsage);
+$responseSender->send($response, round($executionTime * 1000), round($memoryUsage / 1024));
