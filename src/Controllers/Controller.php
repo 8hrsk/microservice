@@ -134,4 +134,21 @@ class Controller {
 
         return $validationNotPassed;
     }
+
+    protected function validateId() {
+        $result = [
+            'status' => 400,
+            'body' => [],
+        ];
+
+        if ($this->data['id'] === null || $this->data['id'] === '') {
+            array_push($result['body'], 'Id validation failed');
+        }
+
+        if (isset($this->data['id']) && $this->Users->getUserById(['id' => $this->data['id']]) === null) {
+            array_push($result['body'], 'No user with this id');
+        }
+
+        return $result;
+    }
 }
