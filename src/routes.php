@@ -9,7 +9,7 @@ return [
         "handler" => "DeleteController",
     ],
 
-    '/redact' => [
+    '/update' => [
         "handler" => "RedactController",
     ],
 

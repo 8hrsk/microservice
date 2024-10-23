@@ -1,6 +1,4 @@
 <?php
-$memoryUsageStart = memory_get_usage();
-$timeStart = microtime(true);
 
 require_once('./ControllersAutoimport.php');
 
@@ -17,7 +15,7 @@ $responseSender = new ResponseSender();
 
 $response = $requestHandler->handleRequest($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $_POST);
 
-$executionTime = microtime(true) - $timeStart;
-$memoryUsage = memory_get_usage() - $memoryUsageStart;
 
+$executionTime = xdebug_time_index();
+$memoryUsage = xdebug_memory_usage();
 $responseSender->send($response, $executionTime, $memoryUsage);

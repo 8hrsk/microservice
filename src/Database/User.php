@@ -48,14 +48,19 @@ class User extends Database {
     }
 
     public function updateUserData(array $UserData) {
+        $updateKeys = array_intersect_key($UserData, array_flip(['name', 'surname', 'phone', 'email', 'country']));
+        $updateString = '';
+
+        foreach ($updateKeys as $key => $value) {
+            $updateString .= "`$key` = '$value', ";
+        }
+        
+        $updateString = rtrim($updateString, ', ');
+
         $result = $this->Connection->query('
             UPDATE `php`.`guests`
             SET
-                `name` = "' . $UserData['name'] . '",
-                `surname` = "' . $UserData['surname'] . '",
-                `email` = "' . $UserData['email'] . '",
-                `phone` = "' . $UserData['phone'] . '",
-                `country` = "' . $UserData['country'] . '"
+            ' . $updateString . '
             WHERE `id` = ' . $UserData['id'] . '
         ');
 
