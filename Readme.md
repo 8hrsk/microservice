@@ -5,6 +5,7 @@ PHP 8.0 | MariaDB 10.6 | PhpMyAdmin (просто для удобной визу
 
 # API routes
 ##### Все запросы являются POST. 
+##### Путь для запроса http://localhost:{PORT}/index.php/{API_ROUTE}
  - /create - создать запись гостя с переданными данными. Запрос имеет вид: ```{
     "name": name,
     "surname": surname,
